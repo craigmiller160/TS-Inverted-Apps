@@ -1,0 +1,11 @@
+<#selectbg_g><@center>READ BEFORE PROCEEDING!!!</@></#>
+
+<b><#selectbg_g><*>1)</#></b> I understand that this Pack is intended ONLY for AOSP ROMs running Android 4.2.2.</*>
+<b><#selectbg_g><*>2)</#></b> I am aware of what I already have installed, and I will not complain about duplicate apps being installed, because I already uninstalled any existing copies of the apps I'm about to install.</*>
+<b><#selectbg_g><*>3)</#></b> I understand that there may be bugs, and I promise to report them in Tenderlion Shadow's thread on Rootzwiki.</*>
+<b><#selectbg_g><*>4)</#></b> I understand that I am flashing this at my own risk. I will not hold Tenderlion Shadow or the many contributors to this pack responsible for any damage to my device.</*>
+<b><#selectbg_g><*>5)</#></b> I grant Tenderloin Shadow permission to kidnap me and two of my closest friends and transform us into a Human Cent-iPad.</*>
+<b><#selectbg_g><*>6)</#></b> I understand that the above statement was an homage to South Park, and if I'm not laughing right now it means I either don't watch South Park or have totally skipped reading this entire agreement.</*>
+<b><#selectbg_g><*>7)</#></b> I grant Tenderloin Shadow permission to mock me if I post in his thread about duplicate apps being installed, because I will have skipped the multiple warnings about that in this installer.</*>
+
+<b><#selectbg_g><*>This installer was made possible by the hard work of Tenderloin Shadow and the many great themers and mod makers of the Android community. Appreciate how blessed you are, and always thank not just TS but all the contributors that made this pack possible.</*></b></#>

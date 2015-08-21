@@ -1,0 +1,492 @@
+##
+#
+# AROMA Installer - Installer Script
+#       (c) 2011 by Ahmad Amarullah
+#           amarullz - xda-developers
+#
+#       Version 2.56
+#
+##
+
+
+## INFO COMMAND FOR AROMA
+#
+#-- DIFFERENT BEHAVIOUR
+#
+# set_progress(0.5);
+#    Set Progress position: 0.0 = 0%; 0.5 = 50%; 1.0 = 100%
+#    
+# show_progress(0.2, 400);
+#    show_progress( progress size, number of files to be extracted );
+#    if we had 50 files, and want to "add" 0.2 into progress after all finished
+#    use (0.2, 50)
+#
+# show_progress(0.2, "-2000");
+#    show_progress( progress size, wait for 2000ms );
+#    For show progress with time as progress indicator, use negative value. After 2second progress will add 0.2/20% into the value
+#    use (0.2, "-2000"). Note, use quote for value "-2000"
+#
+# ui_print("@ Title");
+#    Set progress title
+#
+# ui_print("Default Text");
+#    Set Normal Log Text
+#
+##
+
+ui_print("@TS AROMA Inverted App Pack");
+ui_print("@Version 5.0");
+ui_print("@Brought to you by Tenderloin Shadow");
+ui_print("@With the help of many in the community");
+ui_print("@May 28, 2013");
+ui_print(" ");
+
+###################
+## Mount Storage ##
+###################
+
+ui_print("Mounting /system");
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("Mounting /data");
+run_program("/sbin/busybox", "mount", "/data");
+ui_print(" ");
+
+#--------------#
+## Full Gapps ##
+#--------------#
+
+if
+	file_getprop("/tmp/aroma/google_account.prop", "selected.1") == "1"
+then
+	ui_print("@Installing Google Account Sync Utilities");
+	delete("/system/app/Provision.apk", "/system/app/QuickSearchBox.apk", "/system/app/Vending.apk");
+	package_extract_dir("Full Gapps/system", "/system");
+	set_perm(0, 0, 0755, "/system/addon.d/70-gapps.sh");
+	package_extract_dir("Full Gapps/optional", "/tmp");
+	package_extract_file("Full Gapps/install-optional.sh", "/tmp/install-optional.sh");
+	set_perm(0, 0, 0777, "/tmp/install-optional.sh");
+	run_program("/tmp/install-optional.sh", "");
+endif;
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.1.1") == "1"
+then
+
+	ui_print("@System Apps");
+
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.1") == "1"
+	then
+		ui_print("    Blacked Out Calendar");
+		package_extract_dir("System/Calendar/Blacked Out", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.2") == "1"
+	then
+		ui_print("    Blacked Out Email");
+		package_extract_dir("System/Email/Blacked Out", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.3") == "1"
+	then
+		ui_print("    Blacked Out Google Now");
+		package_extract_dir("System/Google Now/Blacked Out", "/system");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.4") == "1"
+	then
+		ui_print("    Blacked Out Google Settings");
+		package_extract_dir("System/Google Settings/Blacked Out", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.5") == "1"
+	then
+		ui_print("    AOKP MMS");
+		package_extract_dir("System/MMS/AOKP Based", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.5") == "2"
+	then
+		ui_print("    CM MMS");
+		package_extract_dir("System/MMS/CM Based", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.6") == "1"
+	then
+		ui_print("    Blacked Out People");
+		package_extract_dir("System/People/Blacked Out", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.7") == "1"
+	then
+		ui_print("    Blacked Out Play Store");
+		package_extract_dir("System/Play Store/Blacked Out", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/system.prop", "selected.7") == "2"
+	then
+		ui_print("    Multi-DPI Play Store");
+		package_extract_dir("System/Play Store/Multi-DPI", "/system/app");
+	endif;
+
+endif;
+
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.1.2") == "1"
+then
+
+	ui_print("@Social Apps");
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.1") == "1"
+	then
+		ui_print("    Blacked Out Facebook");
+		package_extract_dir("Social/Facebook/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.2") == "1"
+	then
+		ui_print("    Blacked Out Facebook Messenger");
+		package_extract_dir("Social/Facebook Messenger/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.3") == "1"
+	then
+		ui_print("    Blacked Out Google+");
+		package_extract_dir("Social/Google Plus/Blacked Out", "/system");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.4") == "1"
+	then
+		ui_print("    Blacked Out Hangouts");
+		package_extract_dir("Social/Hangouts/Blacked Out", "/system");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.5") == "1"
+	then
+		ui_print("    Blacked Out Instagram");
+		package_extract_dir("Social/Instagram/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.6") == "1"
+	then
+		ui_print("    Blacked Out Just Follow");
+		package_extract_dir("Social/Just Follow/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.7") == "1"
+	then
+		ui_print("    Blacked Out LinkedIn");
+		package_extract_dir("Social/LinkedIn/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.8") == "1"
+	then
+		ui_print("    Blacked Out Pinterest");
+		package_extract_dir("Social/Pinterest/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.9") == "1"
+	then
+		ui_print("    Blacked Out Twitter");
+		package_extract_dir("Social/Twitter/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/social.prop", "selected.10") == "1"
+	then
+		ui_print("    Blacked Out What's App");
+		package_extract_dir("Social/Whats App/Blacked Out", "/data/app");
+	endif;
+
+endif;
+
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.1.3") == "1"
+then
+
+	ui_print("@File Managing/Sharing Apps");
+	
+	if
+		file_getprop("/tmp/aroma/file.prop", "selected.1") == "1"
+	then
+		ui_print("    Blacked Out Box");
+		package_extract_dir("File/Box/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/file.prop", "selected.2") == "1"
+	then
+		ui_print("    Blacked Out Copy");
+		package_extract_dir("File/Copy/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/file.prop", "selected.3") == "1"
+	then
+		ui_print("    Blacked Out Drive");
+		package_extract_dir("File/Drive/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/file.prop", "selected.4") == "1"
+	then
+		ui_print("    Blacked Out Dropbox");
+		package_extract_dir("File/Dropbox/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/file.prop", "selected.5") == "1"
+	then
+		ui_print("    Blacked Out ES File Explorer");
+		package_extract_dir("File/ES File Explorer/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/file.prop", "selected.6") == "1"
+	then
+		ui_print("    Blacked Out Keep");
+		package_extract_dir("File/Keep/Blacked Out", "/system/app");
+	endif;
+	
+endif;
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.1.4") == "1"
+then
+
+	ui_print("@Shopping Apps");
+	
+	if
+		file_getprop("/tmp/aroma/shopping.prop", "selected.1") == "1"
+	then
+		ui_print("    Blacked Out Amazon");
+		package_extract_dir("Shopping/Amazon/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/shopping.prop", "selected.2") == "1"
+	then
+		ui_print("    Blacked Out Craigslst");
+		package_extract_dir("Shopping/Craigslist/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/shopping.prop", "selected.3") == "1"
+	then
+		ui_print("    Blacked Out eBay");
+		package_extract_dir("Shopping/eBay/Blacked Out", "/data/app");
+	endif;
+
+endif;
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.1.5") == "1"
+then
+
+	ui_print("@Media Apps");
+
+	if
+		file_getprop("/tmp/aroma/media.prop", "selected.1") == "1"
+	then
+		ui_print("    Blacked Out Apollo");
+		package_extract_dir("Media/Apollo/Blacked Out", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/media.prop", "selected.2") == "1"
+	then
+		ui_print("    Blacked Out Google Books");
+		package_extract_dir("Media/Google Books/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/media.prop", "selected.3") == "1"
+	then
+		ui_print("    Blacked Out Pandora");
+		package_extract_dir("Media/Pandora/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/media.prop", "selected.4") == "1"
+	then
+		ui_print("    Blacked Out Play Music");
+		package_extract_dir("Media/Play Music/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/media.prop", "selected.5") == "1"
+	then
+		ui_print("    Blacked Out Slacker");
+		package_extract_dir("Media/Slacker/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/media.prop", "selected.6") == "1"
+	then
+		ui_print("    Blacked Out Spotify");
+		package_extract_dir("Media/Spotify/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/media.prop", "selected.7") == "1"
+	then
+		ui_print("    Blacked Out YouTube");
+		package_extract_dir("Media/YouTube/Blacked Out", "/data/app");
+	endif;
+	
+endif;
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.1.6") == "1"
+then
+
+	ui_print("@Other Google Apps");
+	
+	if
+		file_getprop("/tmp/aroma/other_google.prop", "selected.1") == "1"
+	then
+		ui_print("    Blacked Out Chrome");
+		package_extract_dir("Other Google/Chrome/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other_google.prop", "selected.2") == "1"
+	then
+		ui_print("    Blacked Out Gmail");
+		package_extract_dir("Other Google/Gmail/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other_google.prop", "selected.3") == "1"
+	then
+		ui_print("    Blacked Out Maps");
+		package_extract_dir("Other Google/Maps/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other_google.prop", "selected.4") == "1"
+	then
+		ui_print("    Blacked Out Translate");
+		package_extract_dir("Other Google/Translate/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other_google.prop", "selected.5") == "1"
+	then
+		ui_print("    Blacked Out Voice");
+		package_extract_dir("Other Google/Voice/Blacked Out", "/data/app");
+	endif;
+
+endif;
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.1.7") == "1"
+then
+
+	ui_print("@Other Apps");
+
+	if
+		file_getprop("/tmp/aroma/other.prop", "selected.1") == "1"
+	then
+		ui_print("    Blacked Out Flipboard");
+		package_extract_dir("Other/Flipboard/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other.prop", "selected.2") == "1"
+	then
+		ui_print("    Blacked Out Genie Weather Widget");
+		package_extract_dir("Other/Genie Weather Widget/Blacked Out", "/system/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other.prop", "selected.3") == "1"
+	then
+		ui_print("    Blacked Out Mighty Text");
+		package_extract_dir("Other/Mighty Text/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other.prop", "selected.4") == "1"
+	then
+		ui_print("    Blacked Out WordPress");
+		package_extract_dir("Other/WordPress/Blacked Out", "/data/app");
+	endif;
+	
+	if
+		file_getprop("/tmp/aroma/other.prop", "selected.5") == "1"
+	then
+		ui_print("    Blacked Out Yahoo! Mail");
+		package_extract_dir("Other/Yahoo Mail/Blacked Out", "/data/app");
+	endif;
+
+endif;
+
+if
+	file_getprop("/tmp/aroma/menu.prop", "item.2.1") == "1"
+then
+
+	ui_print("@Blacked Out Keyboard");
+	package_extract_dir("Keyboard", "/system/app");
+	
+endif;
+
+#####################
+## Fix Permissions ##
+#####################
+
+ui_print(" ");
+ui_print("@Fixing Permissions");
+set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
+set_perm_recursive(0, 0, 0755, 0644, "/system/app");
+
+ui_print(" ");
+
+#########################
+## Wiping Dalvik Cache ##
+#########################
+
+ui_print("@Wiping Dalvik Cache");
+delete_recursive("/data/dalvik-cache");
+
+ui_print(" ");
+
+###########################
+## Unmounting Partitions ##
+###########################
+
+ui_print("@Unmounting Partitions");
+ui_print("   Unmounting /system");
+run_program("/sbin/busybox", "unmount", "/system");
+ui_print("   Unmounting /data");
+run_program("/sbin/busybox", "unmount", "/data");
+
+##############
+## Finished ##
+##############
+
+ui_print("@Finished Installation");
+ui_print("@Enjoy!");
+
+
+
+set_progress(1);

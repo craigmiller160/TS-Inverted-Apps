@@ -1,0 +1,489 @@
+##################
+## Font & Theme ##
+##################
+
+fontresload(
+	"0",
+	"ttf/Roboto-Regular.ttf",
+	"12"
+);
+fontresload(
+	"1",
+	"ttf/Roboto-Regular.ttf",
+	"18"
+);
+theme(
+	"ics"
+);
+
+#######################
+## Show Splash Image ##
+#######################
+
+splash(
+	2000, # This means it will last for 2000ms or 2 seconds
+	"TS-Logo-Big"
+);
+
+###########
+## Intro ##
+###########
+
+viewbox(
+	"TS AROMA Inverted App Pack",
+	"<b>Version:</b> 5.0\n\n\n"+	
+	"<b>Build Date:</b> May 28, 2013\n\n\n\n\n\n\n\n\n\n"+
+	"Press <b>Next</b> to continue...",
+	"@TS-Logo-Small"
+);
+
+###############
+## Agreement ##
+###############
+
+agreebox(
+	"Agreement",
+	"",
+	"@TS-Logo-Small",
+	resread("read.txt"),
+	"I have actually read the entire agreement. Promise.",
+	"Uh Oh, looks like someone needs to work on their reading skills."
+);
+
+##########
+## Devs ##
+##########
+
+viewbox(
+	"Special Thanks",
+	"This pack would not be possible with the hard work of these wonderful themers:\n\n\n"+
+	"Team Blackout\n"+
+	"    B-Boy\n"+
+	"    djdarknight96\n"+
+	"    rujelus22\n"+
+	"    nitroz\n"+
+	"    sparkyman216\n"+
+	"    gunthermic\n"+
+	"    TUN_SD\n"+
+	"    Xkape\n"+
+	"    Bgill55\n"+
+	"    JaiRomeo\n"+
+	"    JaeKar\n"+
+	"    ecsnead69\n"+
+	"    nmiltner\n"+
+	"    c_hale22\n"+
+	"    Jatx2wne\n"+
+	"    ArtVandelay440\n"+
+	"    IcedVentiMocha\n"+
+	"    dafoxs\n"+
+	"    RyanMarkwald\n"+
+	"Travp624\n"+
+	"MyLifeRocks\n"+
+	"Haro\n"+
+	"and Amarulz, for creating the Aroma Installer",
+	"@TS-Logo-Small"
+);
+
+################
+## Full Gapps ##
+################
+
+selectbox(
+	"Full Gapps Install",
+	"AKA Install Google Account Sync Utilities\n\n"+
+	"To avoid having to install a regular gapps package in addition to this installer, you can choose below to install the Google Account Sync programs that you would normally need a gapps pack for.",
+	"@TS-Logo-Small",
+	"google_account.prop",
+
+	"Install Google Account Sync Utilities", "", 2,
+		"Yes", "", 0,
+		"No", "", 1
+);
+
+###############
+## Main Menu ##
+###############
+
+checkbox(
+	"Main Menu",
+	"Choose which Inverteds you want to install",
+	"@TS-Logo-Small",
+	"menu.prop",
+	
+	"Inverted Apps", "", 2,
+		"System Apps", "", 0,
+		"Social Apps", "", 0,
+		"File Managing/Sharing Apps", "", 0,
+		"Shopping Apps", "", 0,
+		"Media Apps", "", 0,
+		"Other Google Apps", "", 0,
+		"Other Apps", "", 0,
+	
+	"Bonus", "", 2,
+		"Inverted Keyboard", "Install Travp624's Inverted AOSP Keyboard", 0
+);
+
+##########################
+## Inverted System Apps ##
+##########################
+
+if
+	prop("menu.prop", "item.1.1") == "1"
+then
+
+	selectbox(
+		"System Apps",
+		"",
+		"@TS-Logo-Small",
+		"system.prop",
+
+		"Calendar", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+
+		"Email", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+
+		"Google Now", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Google Settings", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"MMS", "", 2,
+			"AOKP Based", "", 0,
+			"CM Based", "", 0,
+			"Don't Install", "", 1,
+
+		"People", "", 2,
+			"Blacked Out", "Haro", 0,
+			"Don't Install", "", 1,
+
+		"Play Store", "", 2,
+			"Blacked Out", "", 0,
+			"Multi-DPI", "Install an alternate Inverted Play Store for non-stock DPIs", 0,
+			"Don't Install", "", 1
+	);
+	
+endif;
+
+#################
+## Social Apps ##
+#################
+
+if
+	prop("menu.prop", "item.1.2") == "1"
+then
+
+	selectbox(
+		"Social Apps",
+		"",
+		"@TS-Logo-Small",
+		"social.prop",
+		
+		"Facebook", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Facebook Messenger", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Google+", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Hangouts", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Instagram", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Just Follow", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"LinkedIn", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Pinterest", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Twitter", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"What's App", "", 2,
+			"Blacked Out", "WARNING: You may need to set up your account with the stock app before installing this one so that it can authenticate", 0,
+			"Don't Install", "", 1
+		
+	);
+
+endif;
+
+###################
+## File Managers ##
+###################
+
+if
+	prop("menu.prop", "item.1.3") == "1"
+then
+
+	selectbox(
+		"File Managing/Sharing Apps",
+		"",
+		"@TS-Logo-Small",
+		"file.prop",
+		
+		"Box", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Copy", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Drive", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Dropbox", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"ES File Explorer", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Keep", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1
+	
+	);
+
+endif;
+
+##############
+## Shopping ##
+##############
+
+if
+	prop("menu.prop", "item.1.4") == "1"
+then
+
+	selectbox(
+		"Shopping Apps",
+		"",
+		"@TS-Logo-Small",
+		"shopping.prop",
+		
+		"Amazon", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Craigslist", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"eBay", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1
+	
+	);
+
+endif;
+
+###########
+## Media ##
+###########
+
+if
+	prop("menu.prop", "item.1.5") == "1"
+then
+
+	selectbox(
+		"Media Apps",
+		"",
+		"@TS-Logo-Small",
+		"media.prop",
+		
+		"Apollo", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Google Books", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Pandora", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Play Music", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Slacker", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Spotify", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"YouTube", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1
+		
+	);
+
+endif;
+
+#######################
+## Other Google Apps ##
+#######################
+
+if
+	prop("menu.prop", "item.1.6") == "1"
+then
+
+	selectbox(
+		"Other Google Apps",
+		"",
+		"@TS-Logo-Small",
+		"other_google.prop",
+		
+		"Chrome", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Gmail", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+			
+		"Maps", "", 2,
+			"Blacked Out", "For the first time ever, INVERTED Maps", 0,
+			"Don't Install", "", 1,
+		
+		"Translate", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Voice", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1
+	
+	);
+
+endif;
+
+################
+## Other Apps ##
+################
+
+if
+	prop("menu.prop", "item.1.7") == "1"
+then
+
+	selectbox(
+		"Other Apps",
+		"",
+		"@TS-Logo-Small",
+		"other.prop",
+		
+		"Flipboard", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Genie Weather Widget", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Mighty Text", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"WordPress", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1,
+		
+		"Yahoo! Mail", "", 2,
+			"Blacked Out", "", 0,
+			"Don't Install", "", 1
+	
+	);
+
+endif;
+
+#######################
+## Create Prop Files ##
+#######################
+
+writetmpfile(
+	"menu.prop",
+	readtmpfile("menu.prop")
+);
+writetmpfile(
+	"system.prop",
+	readtmpfile("system.prop")
+);
+writetmpfile(
+	"google_account.prop",
+	readtmpfile("google_account.prop")
+);
+writetmpfile(
+	"social.prop",
+	readtmpfile("social.prop")
+);
+writetmpfile(
+	"keyboard.prop",
+	readtmpfile("keyboard.prop")
+);
+writetmpfile(
+	"file.prop",
+	readtmpfile("file.prop")
+);
+writetmpfile(
+	"shopping.prop",
+	readtmpfile("shopping.prop")
+);
+writetmpfile(
+	"media.prop",
+	readtmpfile("media.prop")
+);
+writetmpfile(
+	"other_google.prop",
+	readtmpfile("other_google.prop")
+);
+writetmpfile(
+	"other.prop",
+	readtmpfile("other.prop")
+);
+
+#############
+## Install ##
+#############
+
+setvar(
+	"installer_title",
+	"Are You Ready to Install?"
+);
+
+if confirm(
+	"Installing",
+	getvar("installer_title") + "\n\nStart installation",
+	"@TS-Logo-Small")=="no" then back(1);
+endif;
+
+install(
+	"Installing",
+	"Your mods are being installed. Please wait.",
+	"@TS-Logo-Small"
+);
